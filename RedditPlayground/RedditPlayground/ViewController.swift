@@ -14,14 +14,15 @@ class ViewController: UIViewController {
 
     /// Access to the table view
     @IBOutlet weak var tableView: UITableView!
-    
-    /// Reddit posts to display in the table
-    var posts: [Int] = [0,0,0,0,0]
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        redditAPI.getTopPosts()
         tableView.reloadData()
+        redditAPI.getTopPosts(loadMore: false) { [weak self] (_) in
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }
     }
 }
 
@@ -30,12 +31,17 @@ extension ViewController: UITableViewDelegate {
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        return redditAPI.posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RedditCell", for: indexPath)
-        cell.textLabel?.text = "\(indexPath)"
+        if indexPath.row < redditAPI.posts.count {
+            let post = redditAPI.posts[indexPath.row]
+            cell.textLabel?.text = post.title
+        } else {
+            cell.textLabel?.text = "\(indexPath)"
+        }
         return cell
     }
 }
