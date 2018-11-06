@@ -21,13 +21,62 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RedditCell" id="rgK-Jk-pfP" customClass="RedditTableViewCell" customModule="RedditPlayground" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RedditCell" rowHeight="100" id="rgK-Jk-pfP" customClass="RedditTableViewCell" customModule="RedditPlayground" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rgK-Jk-pfP" id="Swl-WQ-jGa">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ZzO-ru-pTi">
+                                                    <rect key="frame" x="10" y="10" width="355" height="79.5"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XzD-aH-jlY">
+                                                            <rect key="frame" x="0.0" y="0.0" width="255" height="79"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="79" id="WTD-wm-Zou"/>
+                                                                <constraint firstAttribute="width" constant="79" id="akc-1Q-Nbj"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="DgL-HW-m7K">
+                                                            <rect key="frame" x="255" y="0.0" width="100" height="64.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58N-CK-qan">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nsl-bg-sqh">
+                                                                    <rect key="frame" x="0.0" y="25.5" width="100" height="17"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="numComments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dc9-B3-4T8">
+                                                                    <rect key="frame" x="0.0" y="47.5" width="100" height="17"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="ZzO-ru-pTi" secondAttribute="trailing" constant="10" id="U6o-tQ-VZt"/>
+                                                <constraint firstItem="ZzO-ru-pTi" firstAttribute="leading" secondItem="Swl-WQ-jGa" secondAttribute="leading" constant="10" id="eg9-4n-5Lh"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZzO-ru-pTi" secondAttribute="bottom" constant="10" id="o8z-nd-A6v"/>
+                                                <constraint firstItem="ZzO-ru-pTi" firstAttribute="top" secondItem="Swl-WQ-jGa" secondAttribute="top" constant="10" id="ufj-55-fkW"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="author" destination="nsl-bg-sqh" id="RRp-KC-Lec"/>
+                                            <outlet property="numComments" destination="dc9-B3-4T8" id="qf6-h0-IcQ"/>
+                                            <outlet property="thumbnail" destination="XzD-aH-jlY" id="P19-pY-MTI"/>
+                                            <outlet property="title" destination="58N-CK-qan" id="BdM-eH-vbq"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
